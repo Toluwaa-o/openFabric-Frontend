@@ -19,7 +19,7 @@ import Error from '../components/Errors/Popup'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Page />} >
+    <Route path='/' element={<Page />} errorElement={<Error />} >
       <Route path='store' element={<Store />} >
         <Route index element={<Products />} />
         <Route path='product/:id/reviews' element={<Reviews />} loader={fetchRev} />
@@ -39,7 +39,6 @@ const router = createBrowserRouter(
       <Route path='login' element={<Login />} />
       <Route path='signup' element={<Register />} />
       <Route path='logout' element={<Logout />} />
-       <Route path='*' element={<Error />} />
     </Route>
   )
 )
