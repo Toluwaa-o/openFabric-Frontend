@@ -14,7 +14,7 @@ export default function Page() {
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart'))
 
-    if(storedCart.length > 0) {
+    if(storedCart && storedCart.length > 0) {
       dispatch(orderActions.populate(storedCart))
     }
   }, [])
