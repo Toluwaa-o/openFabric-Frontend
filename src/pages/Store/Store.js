@@ -14,7 +14,7 @@ export default function Store() {
   const showing = useSelector(state => state.ui.doneMsg)
 
   useEffect(() => {
-    console.log('here')
+    
       if(showing){
         setTimeout(() => {
           dispatch(uiActions.setMessage(false))

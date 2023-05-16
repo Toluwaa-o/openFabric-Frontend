@@ -21,13 +21,11 @@ const uiSlice = createSlice({
         },
         setMessage(state, action) {
             state.doneMsg = action.payload
-            console.log(state.doneMsg)
-            // console.log(current(state.doneMsg))
+            
         },
         setIsError(state, action) {
             state.isError = action.payload
-            console.log(state.isError);
-            // console.log(current(state.isError))
+            
         }
     }
 })

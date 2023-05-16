@@ -16,6 +16,7 @@ import ExpandedProduct, { getData } from '../pages/Products/ExpandedProduct'
 import Reviews, {fetchRev} from '../pages/Reviews/Reviews'
 import Logout from '../components/Auth/Logout'
 import Error from '../components/Errors/Popup'
+import { memo } from 'react'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,8 +44,10 @@ const router = createBrowserRouter(
   )
 )
 
-export default function App() {
+function App() {
   return (
     <RouterProvider router={router} />
   )
 }
+
+export default memo(App)
