@@ -18,8 +18,8 @@ Functionalities Include:
 
 Links:
 
-Frontend Github repo: 
-Frontend Live Link: 
+Frontend Github repo: https://github.com/Toluwaa-o/openFabric-Frontend.git
+Frontend Live Link: https://open-fabric-frontend.vercel.app/
 
 Backend Github repo: https://github.com/Toluwaa-o/openFabric-Backend.git
 Backend API Documentation with DOCGEN: https://openfabric-backend-rtee.onrender.com/
