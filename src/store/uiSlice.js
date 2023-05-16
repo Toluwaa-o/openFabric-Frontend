@@ -1,11 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 
 const uiSlice = createSlice({
     name: 'ui',
     initialState: {
         showEdit: false,
         showAdd: false,
-        showRev: false
+        showRev: false,
+        doneMsg: false,
+        isError: false
     },
     reducers: {
         toggleEdit(state) {
@@ -16,6 +18,16 @@ const uiSlice = createSlice({
         },
         toggleRev(state) {
             state.showRev = !state.showRev
+        },
+        setMessage(state, action) {
+            state.doneMsg = action.payload
+            console.log(state.doneMsg)
+            // console.log(current(state.doneMsg))
+        },
+        setIsError(state, action) {
+            state.isError = action.payload
+            console.log(state.isError);
+            // console.log(current(state.isError))
         }
     }
 })

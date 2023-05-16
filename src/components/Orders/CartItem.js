@@ -25,10 +25,9 @@ export default function CartItem({image, title, category, price, discount, amoun
             <div>
                 <p>{title}</p>
                 {!freeShipping && <p>Shipping: ${cart.shipping}</p>}
-                <p>Tax: $30</p>
             </div>
             {discount > 0 && <p>-{discount}%</p>}
-            <h3>${price - ((discount/100)*price)}</h3>
+            <h3>${parseInt(price - ((discount/100)*price))}</h3>
         </div>
         <div>
             <span onClick={removeItem}>

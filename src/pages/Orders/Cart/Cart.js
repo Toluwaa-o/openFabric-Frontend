@@ -5,18 +5,18 @@ import Button from '../../../components/Button/Button'
 import CheckOut from '../../../components/Button/CheckOut'
 
 export default function Cart() {
-    const cart = useSelector(state => state.order.cart)
+    const order = useSelector(state => state.order)
 
     useEffect(() => {
-      if(cart.length > 0) {
-        localStorage.setItem('cart', JSON.stringify(cart))
+      if(order.cart.length > 0) {
+        localStorage.setItem('orderSlice', JSON.stringify(order))
       }
-    }, [cart])
+    }, [order.cart])
 
   return (
     <div className='cart'>
-        {cart && cart.length > 0 ? <> 
-       { cart.map(c => {
+        {order.cart && order.cart.length > 0 ? <> 
+       { order.cart.map(c => {
             return (
                 <CartItem 
                 key={c.product} 

@@ -2,13 +2,26 @@ import { Outlet } from "react-router"
 import Navbar from "../../components/Navbar/Navbar"
 import { useEffect } from "react"
 import instance from "../../components/Axios/Config"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router"
 import { userActions } from "../../store/userSlice"
+import Msg from "../../components/UI/Msg"
+import { uiActions } from "../../store/uiSlice"
 
 export default function Store() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const showing = useSelector(state => state.ui.doneMsg)
+
+  useEffect(() => {
+    console.log('here')
+      if(showing){
+        setTimeout(() => {
+          dispatch(uiActions.setMessage(false))
+          dispatch(uiActions.setIsError(false))
+        }, 2000)
+      }
+}, [showing])
 
   useEffect(() => {
     instance({
@@ -19,7 +32,7 @@ export default function Store() {
       dispatch(userActions.getUser(res.data.user))
     })
     .then(() => navigate('/store'))
-    .catch(err => {
+    .catch(() => {
         console.log('not logged in')
     })
 
@@ -33,6 +46,7 @@ export default function Store() {
 
     <main>
         <Outlet />
+        <Msg />
     </main>
     </>
   )

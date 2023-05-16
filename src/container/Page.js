@@ -12,9 +12,9 @@ export default function Page() {
   const user = useSelector(state => state.user.user)
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('cart'))
+    const storedCart = JSON.parse(localStorage.getItem('orderSlice'))
 
-    if(storedCart && storedCart.length > 0) {
+    if(storedCart && storedCart.cart.length > 0) {
       dispatch(orderActions.populate(storedCart))
     }
   }, [])

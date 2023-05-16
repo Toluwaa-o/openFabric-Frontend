@@ -15,7 +15,10 @@ export default function Navbar() {
             url: '/auth/logout',
             method: 'delete'
         })
-        .then(() => dispatch(orderActions.clearOrders()))
+        .then(() => {
+            dispatch(orderActions.clearOrders())
+            localStorage.clear()
+        })
         .then(() => navigate('/login'))
         .catch(err => console.log(err))
     }, [])

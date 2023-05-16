@@ -149,6 +149,7 @@ body {
   max-width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
+  width: 100vw;
 }
 
 header {
@@ -248,6 +249,10 @@ header > .logo > img {
 .navOut {
   animation: fadeOut .8s linear;
   transform: translateX(-100vh);
+}
+
+main {
+  position: relative;
 }
 
 @keyframes fadein {
@@ -639,6 +644,7 @@ input.shipping {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5em;
+  justify-content: center;
 }
 
 .allProducts > a {
@@ -726,7 +732,7 @@ input.shipping {
   padding: .5em;
 }
 
-.order-item > div:first-child {
+.order-sec {
   display: flex;
   gap: 1em;
   align-items: center;
@@ -747,13 +753,29 @@ input.shipping {
   color: gray;
 }
 
-.order-item > div:first-child > p {
+.order-item > .order-secd > p {
   color: rgb(87, 87, 87);
   font-weight: 700;
 }
 
 .order-item > div > img {
   width: 80px;
+}
+
+.success {
+  position: fixed;
+  top: 13vh;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+  color: white;
+  width: 80vw;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 2em;
+  background: orangered;
 }
 
 .if-empty {
@@ -1146,6 +1168,22 @@ input.shipping {
   border-radius: 5px;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  color: white;
+  margin-block: 1.5em 1em;
+}
+
+.pagination > p {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-content: center;
+  border-radius: 5px;
+}
+
 @media (min-width: 768px) {
   header {
     padding: 1.5em;
@@ -1240,6 +1278,7 @@ input.shipping {
   .products {
     display: grid;
     grid-template-columns: 27% 73%;
+    grid-template-rows: auto auto;
     gap: 1em;
     padding: 0;
     min-height: 90vh;
@@ -1260,6 +1299,16 @@ input.shipping {
     margin: auto;
   }
 
+  .pagination {
+    grid-area: 2/2/3/3;
+    font-size: 1.2em;
+  }
+
+  .pagination > p {
+    width: 50px;
+    height: 50px;
+  }
+
   .priceFilters > p {
     font-size: 1em;
   }
@@ -1267,6 +1316,7 @@ input.shipping {
   .products .allProducts {
     height: fit-content;
     padding: 1em 2em;
+    justify-content: center;
   }
 
   .products .allProducts img {
@@ -1275,6 +1325,7 @@ input.shipping {
 
   .allProducts > a {
     padding: 1em 2em;
+    width: 250px;
   }
 
   .addProd {
@@ -1311,11 +1362,11 @@ input.shipping {
     font-size: 1.2em;
   }
 
-  .order-item, .cart-item, .order-item > div:first-child, .order-item > div:last-child {
+  .order-item, .cart-item, .order-sec, .order-item > div:last-child {
     padding: 1em;
   }
 
-  .order-item > div:first-child {
+  .order-sec {
     font-size: 1.2em;
   }
 
@@ -1435,5 +1486,11 @@ input.shipping {
   .addProduct > form > textarea, .editProduct > form > textarea, .add-review > form > textarea {
     padding: 1em;
     font-size: 1.1em;
+  }
+
+  .success {
+    width: 30vw;
+    font-size: 1.3em;
+    top: 20vh;
   }
 }

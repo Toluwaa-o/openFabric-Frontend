@@ -26,6 +26,12 @@ export default function Products() {
     max: ''
   })
 
+  const [page, setPage] = useState({
+    currPage: 1,
+    uiPage: 1,
+    numOfPages: 1
+  })
+
   const updateFilterData = (e) => {
     const { name, value } = e.target
 
@@ -43,10 +49,14 @@ export default function Products() {
     query = query.join('&')
 
     instance({
-      url: `/products?${query}`,
+      url: `/products?page=${page.currPage}&${query}`,
       method: 'get'
     })
-    .then(res => setProds(res.data.products))
+    .then(res => {
+      setProds(res.data.products)
+      setPage(prev => ({...prev, numOfPages: res.data.numOfPages}))
+      setPage(prev => ({...prev, uiPage: page.currPage}))
+    })
     .catch(err => {
       if(err.response.status === 404){
         setProds([])
@@ -54,7 +64,7 @@ export default function Products() {
         loader = <p style={{textAlign: 'center', fontWeight: '700', paddingTop: '3em', color: 'red'}}>Something went wrong, please try again!</p>
       }
     })
-  }, [searchParams, edit, add])
+  }, [searchParams, edit, add, page.currPage])
 
   const prodFilter = (e) => {
     e.preventDefault()
@@ -86,6 +96,12 @@ export default function Products() {
     setShowFilter(false)
     setSearchParams(queryObject)
   }
+
+  let num = []
+  
+  for(let i = 1; i < Number(page.numOfPages + 1); i++){
+          num.push(i)
+      }
 
   return (
     <>
@@ -136,7 +152,10 @@ export default function Products() {
       {prods ? prods.length > 0 ? <Product prods={prods}/> : <h3 style={{textAlign: 'center', fontWeight: '700', paddingTop: '3em'}}>No Products available!</h3> : loader}
       
       {add && <AddProduct />}
-    </div>
+      <div className='pagination'>
+        {prods && num.map(number => <p style={{background: page.uiPage === number ? 'orangered' : 'gray'}} onClick={() => setPage(prev => ({...prev, currPage: number}))} key={number}>{number}</p>)}
+        </div>
+      </div>
     </>
   )
 }

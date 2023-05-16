@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 import { useSelector } from 'react-redux'
 import Logo from "../Logo/Logo"
 import { useState } from "react"
-import Modal from "../Modal"
+import Modal from "../UI/Modal"
 
 export default function Navbar() {
     const user = useSelector(state => state.user.user)

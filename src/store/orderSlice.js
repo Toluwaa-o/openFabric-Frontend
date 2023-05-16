@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 
 const orderSlice = createSlice({
     name: 'order',
@@ -19,7 +19,7 @@ const orderSlice = createSlice({
         addToCart(state, action) {
             let myIndex
             const isIncluded = state.cart.some((item, index) => {
-                if(item._id === action.payload._id){
+                if(item.product === action.payload.product){
                     myIndex = index
                     return true
                 }else {
@@ -93,7 +93,11 @@ const orderSlice = createSlice({
             state.cart = []
         },
         populate(state, action) {
-            state.cart = action.payload
+            state.cart = action.payload.cart
+            state.order = action.payload.order
+            state.orders = action.payload.orders
+            state.shipping = action.payload.shipping
+            state.total = action.payload.total
         },
         removeOneItem(state, action) {
             let myIndex
