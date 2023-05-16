@@ -68,6 +68,11 @@ export default function Products() {
 
   const prodFilter = (e) => {
     e.preventDefault()
+    setPage({
+      currPage: 1,
+      uiPage: 1,
+      numOfPages: 1
+    })
     const queryObject = {}
 
     if(filters.title !== '') queryObject.title = filters.title
