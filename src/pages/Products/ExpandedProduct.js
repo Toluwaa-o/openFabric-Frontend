@@ -29,6 +29,10 @@ export default function ExpandedProduct() {
       })
     
       const addToCart = () => {
+        if(!user) {
+          return navigate('/login')
+        }
+        
         if(data.inventory > 1 && user){
           dispatch(orderActions.addToCart({title: data.title, price: data.price, image: data.image, discount: data.discount, product: data._id, category: data.category, freeShipping: data.freeShipping}))
           setUi({

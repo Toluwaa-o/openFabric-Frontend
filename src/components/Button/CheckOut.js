@@ -51,7 +51,7 @@ export default function CheckOut() {
         })
         .then(() => {
             dispatch(orderActions.clearOrders())
-            navigate('/store')
+            navigate('/store/orders')
             setUi({
                 text: '',
                 color: 'orangered'

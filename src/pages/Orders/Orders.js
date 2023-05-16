@@ -2,8 +2,13 @@ import {useState, useEffect} from 'react'
 import instance from '../../components/Axios/Config'
 import Order from './Order'
 import Button from '../../components/Button/Button'
+import Msg from '../../components/UI/Msg'
+import { useDispatch, useSelector } from "react-redux"
+import { uiActions } from '../../store/uiSlice'
 
 export default function Orders() {
+  const dispatch = useDispatch()
+  const showing = useSelector(state => state.ui.doneMsg)
   const [orders, setOrders] = useState(null)
   let loader = <div className="loader"></div>
 
@@ -23,6 +28,16 @@ export default function Orders() {
 
   }, [])
 
+  useEffect(() => {
+    
+      if(showing){
+        setTimeout(() => {
+          dispatch(uiActions.setMessage(false))
+          dispatch(uiActions.setIsError(false))
+        }, 2000)
+      }
+}, [showing])
+
   return (
     <>
       {orders ? orders.length > 0 ? <div className='all-orders'>
@@ -38,6 +53,7 @@ export default function Orders() {
                 <p>Browse our shop and discover the best deals!</p>
                 <Button to='/store' text='Start Shopping' />
             </div> : loader}
+        <Msg />
     </>
   )
 }
