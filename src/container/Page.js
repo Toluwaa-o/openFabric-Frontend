@@ -22,13 +22,12 @@ export default function Page() {
   useEffect(() => {
     if(location.pathname === '/'){
       if(user) {
-        console.log('here')
         return navigate('/store')
       }else {
         return navigate('/login')
       }
     }
-  })
+  }, [])
   return (
     <Outlet />
   )

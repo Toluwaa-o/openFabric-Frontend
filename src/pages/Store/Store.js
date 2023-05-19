@@ -19,7 +19,6 @@ export default function Store() {
     .then(res => {
       dispatch(userActions.getUser(res.data.user))
     })
-    .then(() => navigate('/store'))
     .catch(() => {
         console.log('not logged in')
     })
